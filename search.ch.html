@@ -1,0 +1,55 @@
+[[-
+-------------------------------------------------------------------------------------------------------
+Поиск по сайту: SimpleSearch
+-------------------------------------------------------------------------------------------------------
+
+<!--
+1. Создаём страницу: Результаты поиска (не отображать в меню, опубликованна)
+2. В содержимое страницы добавляем:
+ -->
+
+[[!SimpleSearch?
+    &tpl=`search__result.ch.html`
+    &includeTVs=`1`
+]]
+
+<!--
+4. Копируем предустановленный код из: Файлы->core->components->simplesearch->chunks->searchresult.chunk.tpl
+5. В новый чанк SearchResult.tpl
+-->
+
+<div class="sisea-result">
+    <h3>[[+idx]]. <a href="[[+link:is=``:then=`[[~[[+id]]]]`:else=`[[+link]]`]]" title="[[+longtitle]]">[[+pagetitle]]</a></h3>
+    <div class="extract"><p>[[+extract]]</p></div>
+</div>
+
+<!--
+6. Находим чанк с формой поиска и добавляем вызов снипета (редактируем ID страницы результата поиска):
+-->
+
+[[SimpleSearchForm?
+&tpl=`SearchForm.tpl`
+&landing=`27`]]
+
+<!--
+7. Создаем чанк: SearchForm.tpl, копируем туда код нашей формы и код предустановленного чанка.
+-->
+
+[[~[[+landing]]]]
+[[+method]]
+[[+searchIndex]]            name Inputa
+[[+searchValue]]            value
+
+
+<form id="serch-inline" class="serch-inline" action="[[~[[+landing]]]]" method="[[+method]]">
+    <input type="search" placeholder="поиск по каталогу" class="form-search__input" name="[[+searchIndex]]" id="[[+searchIndex]]" value="[[+searchValue]]">
+    <input type="hidden" name="id" value="[[+landing]]">
+
+    <button type="submit" class="serch-inline__button"><i class="fafa-search"></i></button>
+</form>
+
+<!--
+8. Проверяем.
+-->
+=======================================================================================================
+]]
